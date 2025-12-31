@@ -1,5 +1,6 @@
 use actix_web::{post, App, HttpServer, Responder, HttpResponse};
 use serde::{Serialize, Deserialize};
+use actix_web::web::Json;
 
 #[actix_web::main]
 async fn main() -> Result<(), std::io::Error> {
@@ -20,11 +21,12 @@ struct Rect {
     height: u32,
 }
 
+#[derive(Serialize, Deserialize)]
 enum Side{
     Buy,
     Sell
 }
-
+#[derive(Serialize, Deserialize)]
 struct trade_orders {
     price: u32,
     quantity: u32,
