@@ -24,9 +24,9 @@ pub async fn create_order(body: Json<trade_orders_input>) -> impl Responder { //
 #[post("/delete")]
 pub async fn delete_order(body: Json<order_deleted_input>) -> impl Responder {
     let order_id = body.0.order_id;
-    HttpResponse::Ok().json(order_deleted_output{
-        order_id: order_id,
-        message: "Order Deleted".to_string()
+    HttpResponse::Ok().json(order_deleted_output {
+        filled_quantity: 50,
+        average_price: 100
     })
 }
 
