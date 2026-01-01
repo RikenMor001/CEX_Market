@@ -13,3 +13,9 @@ pub struct trade_orders_input { // Create a struct to represent the request body
     pub user_id: u32,
     pub side: Side
 }
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct order_deleted_input{
+    pub order_id: u32,
+    pub message: String
+}
