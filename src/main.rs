@@ -15,33 +15,38 @@ async fn main() -> Result<(), std::io::Error> {
     .await
 }
 
-#[derive(Serialize, Deserialize)]
-struct Rect {
-    width: u32,
-    height: u32,
-}
-
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 enum Side{
     Buy,
     Sell
 }
-#[derive(Serialize, Deserialize)]
-struct trade_orders {
+#[derive(Serialize, Deserialize, Debug)]
+struct trade_orders { // Create a struct to represent the request body
     price: u32,
     quantity: u32,
     user_id: u32,
     side: Side
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+struct trade_order_response {
+    order_id: u32
+}
+
+// app.post("/order", (req, res) => {
+//     const {price, quantity} = req.body;
+// }) // This is the equivalent of the create_order function
+
 #[post("/order")]
 async fn create_order(body: Json<trade_orders>) -> impl Responder { // body: Json<trade_orders> is a way to parse the request body
-    let r = Rect {
-        width: 30,
-        height: 20,
-    };
-
-    HttpResponse::Ok().json(r)
+    let price = body.0.price;
+    let quantity = body.0.quantity;
+    let user_id = body.0.user_id;
+    let side = body.0.side;
+    // Returns a json response
+    HttpRespone::ok().json(trade_order_response {
+        order_id: String::from("Added to order book")
+    })
 }
 
 #[post("/delete")]
