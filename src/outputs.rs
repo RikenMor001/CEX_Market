@@ -10,3 +10,9 @@ pub struct trade_order_response_output {
     pub user_id: u32,
     pub side: Side
 }
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct order_deleted_output {
+    pub order_id:u32,
+    pub message: String
+}
