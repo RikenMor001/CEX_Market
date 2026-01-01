@@ -16,6 +16,5 @@ pub struct trade_orders_input { // Create a struct to represent the request body
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct order_deleted_input{
-    pub order_id: u32,
-    pub message: String
+    pub order_id: u32
 }
