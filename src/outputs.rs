@@ -13,6 +13,7 @@ pub struct trade_order_response_output {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct order_deleted_output {
-    pub order_id:u32,
-    pub message: String
+    pub filled_quantity: u32,
+    pub average_price: u32,
 }
+
