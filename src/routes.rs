@@ -2,6 +2,8 @@ use actix_web::{post, Responder, HttpResponse};
 use actix_web::web::Json;
 use crate::inputs::trade_orders_input;
 use crate::outputs::trade_order_response_output;
+use crate::inputs::order_deleted_input;
+use crate::outputs::order_deleted_output;
 
 #[post("/order")]
 pub async fn create_order(body: Json<trade_orders_input>) -> impl Responder { // body: Json<trade_orders> is a way to parse the request body
@@ -20,8 +22,12 @@ pub async fn create_order(body: Json<trade_orders_input>) -> impl Responder { //
 }
 
 #[post("/delete")]
-pub async fn delete_order() -> impl Responder {
-    "Order Created"
+pub async fn delete_order(body: Json<order_deleted_input>) -> impl Responder {
+    let order_id = body.0.order_id;
+    HttpResponse::Ok().json(order_deleted_output{
+        order_id: order_id,
+        message: "Order Deleted".to_string()
+    })
 }
 
 #[post("/depth")]
