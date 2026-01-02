@@ -1,14 +1,13 @@
 use serde::{Serialize, Deserialize};
 use crate::inputs::Side;
 
-#[derive(Debug, Serialize, Deserialize)] // This is where serde is used to serialize and deserialize the response body
-// This is the equivalent of the response body in the request body 
+#[derive(Debug, Serialize, Deserialize)]
 pub struct trade_order_response_output {
     pub order_id: u32,
     pub price: u32,
     pub quantity: u32,
     pub user_id: u32,
-    pub side: Side
+    pub side: Side,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -17,3 +16,10 @@ pub struct order_deleted_output {
     pub average_price: u32,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct market_depth_output {
+    pub symbol: String,
+    pub market_price: u32,
+    pub limit_price: u32,
+    pub volume: bool,   // true if total volume > quantity
+}
